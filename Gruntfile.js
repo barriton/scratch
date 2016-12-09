@@ -79,6 +79,14 @@ module.exports = function(grunt){
       }
     },
     clean : {
+      begin : [
+        'README.md',
+        '.gitignore',
+        '.git',
+        'assets/css/dist/.gitkeep',
+        'assets/js/dist/.gitkeep',
+        'assets/js/build/.gitkeep'
+      ],
       pre_build : ['production'],
       build : ['production/.sass-cache',
         'production/node_modules',
@@ -169,4 +177,5 @@ module.exports = function(grunt){
   grunt.registerTask('prod', ['uglify', 'concat', 'sass', 'concat', 'clean:pre_build', 'copy', 'clean:build', 'command']);
   grunt.registerTask('deploy', ['ftp-deploy']);
   grunt.registerTask('clean-prod', ['clean:pre_build']);
+  grunt.registerTask('begin', ['clean:begin']);
 };
