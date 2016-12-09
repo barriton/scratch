@@ -1,0 +1,324 @@
+@charset "utf-8";
+
+$_version : '4.2.0';
+
+/*!
+* Barriton CSS
+* @version: #{$_version}
+* Licence : Creative Commons BY NC ND
+* http://creativecommons.org/licenses/by-nc-nd/3.0/fr/
+* Please, send us an email if you use it ( info[.at.]barriton[.dot.]com )
+* Using Normalize.css
+* Using Gridlex.css
+*/
+
+@import 'mixins';
+
+/* General */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+* {
+    html .clearfix {
+        height: 1%;
+    }
+    &:first-child + html .clearfix {
+        min-height: 1%;
+    }
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    @extend .clearfix;
+}
+
+/* Fonts */
+
+.titc {
+    font-style: italic;
+}
+
+.tlgt{
+    font-weight: 200;
+}
+
+.tnrl {
+    font-weight: 400;
+    font-style: normal;
+}
+
+.tbld {
+    font-weight: 700;
+}
+
+.tudln{
+    text-decoration: underline;
+}
+
+.tctr {
+    text-align: center;
+}
+
+.tlft {
+    text-align: left;
+}
+
+.trgt {
+    text-align: right;
+}
+
+.tjsf{
+    text-align: justify;
+}
+
+$_font_sizes : 0.5 1 1.2 1.4 1.6 1.8 2 2.2 2.4 2.6 2.8 3 3.2 3.4 3.6 3.8 4.0 4.2 4.4 4.6 4.8 5.0 5.2 5.4 5.6 5.8 6.0;
+@each $_size in $_font_sizes{
+    .te#{$_size*10*10}{
+        font-size: #{$_size}em;
+    }
+    .cssremunit .rte#{$_size*10*10}{
+        font-size : #{$_size}rem;
+    }
+}
+
+/* Display & Positions */
+
+.dbck {
+    display: block;
+}
+
+.dinbck {
+    display: inline-block;
+}
+
+.din{
+    display: inline;
+}
+
+.rlt {
+    position: relative;
+}
+
+.abs {
+    position: absolute;
+}
+
+.fxd {
+    position: fixed;
+}
+
+.cbck {
+    margin: 0 auto;
+}
+
+.vtop{
+    vertical-align: top;
+}
+
+.vmdl{
+    vertical-align: middle;
+}
+
+.vbtm{
+    vertical-align: bottom;
+}
+
+.vbsl{
+    vertical-align: baseline;
+}
+
+/* Float */
+
+.flft {
+    float: left;
+}
+
+.frgt {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.fnone {
+    float: none;
+}
+
+/* Visibility */
+
+.opaque{
+    @include opacity(0);
+}
+
+.nopaque{
+    @include opacity(1);
+}
+
+.dnone {
+    display: none;
+}
+
+.vnone {
+    visibility: hidden;
+}
+
+.disable-select{
+    user-select: none;
+}
+
+.elem-hidden, .element-invisible {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    color : transparent;
+    text-transform: capitalize;
+    height : 0em;
+}
+
+.element-invisible{
+    display: none;
+}
+
+/* Text format */
+
+strong{
+    font-weight: 700;
+}
+
+em{
+    font-style: italic;
+}
+
+$_p_lh : 1.3 !default;
+
+p, pre, table, ul, ol{
+    line-height : #{$_p_lh};
+    padding : 0;
+    margin: 0;
+    &.nlist{
+        list-style: none;
+    }
+}
+
+h1, h2, h3, h4, h5, h6{
+    line-height : #{$_p_lh};
+    padding : 0;
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+ul, ol{
+    list-style-position: inside;
+}
+
+/* Form */
+
+input, textarea, select{
+    font : inherit;
+    box-sizing: border-box;
+}
+
+/* RWD */
+
+@media screen and (max-width: 20em) { // 320px
+    .dp-xxs{
+        display: block !important;
+    }
+    .hd-xxs{
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 30em) { // 480px
+    .dp-xs{
+        display: block !important;
+    }
+    .hd-xs{
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 40em) { // 640px
+    .wrapper{
+        width : 96%;
+        padding-left: 2%;
+        padding-right: 2%;
+        &.no-40em{
+            width: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .dp-s{
+        display: block !important;
+    }
+    .hd-s{
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 48em){ // 768px
+    .wrapper {
+        width: 748px;
+        padding-left: 10px;
+        padding-right: 10px;
+        &.no-48em{
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+        }
+    }
+}
+
+@media screen and (max-width: 48em) {
+    .dp-m{
+        display: block !important;
+    }
+    .hd-m{
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 60em) { // 960px
+    .dp-l{
+        display: block !important;
+    }
+    .hd-l{
+        display: none !important;
+    }
+}
+
+@media (min-width: 62em) { // 992px
+    .wrapper {
+        width: 960px;
+        padding-left: 10px;
+        padding-right: 10px;
+        &.no-62em{
+            width: 748px;
+        }
+    }
+}
+
+@media (min-width: 75em) { // 1200px;
+    .wrapper {
+        width: 1180px;
+        padding-left: 10px;
+        padding-right: 10px;
+        &.no-75em{
+            width: 960px;
+        }
+    }
+}

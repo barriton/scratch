@@ -1,0 +1,36 @@
+{
+  "name": "Assets",
+  "version": "1.0.0",
+  "description": "Assets files",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-commands": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-ftp-deploy": "latest",
+    "grunt-postcss" : "latest",
+    "grunt-contrib-cssmin" : "latest",
+    "normalize.css": "latest",
+    "gridlex" : "latest",
+    "autoprefixer" : "latest",
+    "jquery" : "latest",
+    "grunt-modernizr" : "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Barriton",
+  "license": "CC-BY-NC-ND-4.0",
+  "repository": {},
+  "prefixDist": "dist",
+  "prefixVendors": "vendors",
+  "user": "barriton",
+  "group": "staff",
+  "devDependencies": {}
+}

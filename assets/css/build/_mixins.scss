@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+$_version : '4.2.0';
+
+/**
+* Mixins Barriton CSS
+* @version: #{$_version}
+**/
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+* html .clearfix{height:1%}
+*:first-child+html .clearfix{min-height:1%}
+
+/* Mixins */
+
+@mixin opacity ($value: 1, $other : '') {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity= #{$value * 100} )";
+    filter: "alpha(opacity= #{$value * 100})";
+    zoom: 1;
+    opacity: $value;
+}
+
+@mixin font-face($font: font_name, $folder: '../fonts/', $name : font_name, $style : 'normal', $weight : 400) {
+    @font-face {
+        font-family: $font;
+        src : url($folder + "/" + $name + ".eot");
+        src: url($folder + "/" + $name + ".eot?#iefix") format('embedded-opentype'),
+        url($folder + "/" + $name + ".woff2") format('woff2'),
+        url($folder + "/" + $name + ".woff") format('woff'),
+        url($folder + "/" + $name + ".ttf") format('truetype'),
+        url($folder + "/" + $name + ".svg" + "#" + $name ) format('svg');
+        font-style: $style;
+        font-weight: $weight;
+    }
+}
