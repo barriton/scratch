@@ -121,12 +121,25 @@ module.exports = function(grunt){
       }
     },
     modernizr: {
-      dist: {
-        parseFiles: true,
-        dest : 'assets/js/dist/modernizr.js',
-        options : [
-          'cssremunit','filereader','domprefixes','hasevent','prefixes','setclasses','shiv','testallprops','testprop','teststyles'
-        ]
+      dist:{
+        "crawl": false,
+        "customTests": [],
+        "dest": "assets/js/dist/modernizr.js",
+        "tests": [
+          "cssremunit",
+          "filereader"
+        ],
+        "options": [
+          "domPrefixes",
+          "prefixes",
+          "hasEvent",
+          "testAllProps",
+          "testProp",
+          "testStyles",
+          "html5shiv",
+          "setClasses"
+        ],
+        "uglify": true
       }
     },
     watch: {
