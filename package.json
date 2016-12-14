@@ -4,22 +4,23 @@
   "description": "Assets files",
   "main": "Gruntfile.js",
   "dependencies": {
+    "autoprefixer": "latest",
+    "gridlex": "latest",
     "grunt": "latest",
     "grunt-contrib-clean": "latest",
     "grunt-contrib-commands": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-copy": "latest",
+    "grunt-contrib-csslint": "latest",
+    "grunt-contrib-cssmin": "latest",
     "grunt-contrib-sass": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-ftp-deploy": "latest",
-    "grunt-postcss" : "latest",
-    "grunt-contrib-cssmin" : "latest",
-    "normalize.css": "latest",
-    "gridlex" : "latest",
-    "autoprefixer" : "latest",
-    "jquery" : "latest",
-    "grunt-modernizr" : "latest"
+    "grunt-modernizr": "latest",
+    "grunt-postcss": "latest",
+    "jquery": "latest",
+    "normalize.css": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

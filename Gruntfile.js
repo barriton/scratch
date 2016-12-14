@@ -3,6 +3,21 @@ module.exports = function(grunt){
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     sass: {
+      dev : {
+        options: {
+          sourcemap: 'none',
+          trace: false
+        },
+        files:[
+          {
+            expand: true,
+            cwd: 'assets/css/build',
+            src: ['default.scss'],
+            dest : 'assets/css/lint',
+            ext: '.css'
+          }
+        ]
+      },
       dist: {
         options: {
           sourcemap: 'none',
@@ -30,7 +45,7 @@ module.exports = function(grunt){
           except : ['jQuery','$']
         },
         compress: {
-          //drop_console: true
+          drop_console: true
         }
       },
       my_target: {
@@ -48,25 +63,25 @@ module.exports = function(grunt){
         src: [
           'assets/css/normalize.min.css',
           'assets/css/barriton.min.css',
-          'assets/css/gridlex.min.css',
+          'assets/css/gridlex.min.css'
         ],
         dest : 'assets/css/dist/<%= pkg.prefixVendors %>.min.css'
       },
       css:{
         src: [
-          'assets/css/default.min.css',
+          'assets/css/default.min.css'
         ],
         dest : 'assets/css/dist/<%= pkg.prefixDist %>.min.css'
       },
       vendor_js:{
         src: [
-          'node_modules/jquery/dist/jquery.min.js',
+          'node_modules/jquery/dist/jquery.min.js'
         ],
         dest: 'assets/js/dist/<%= pkg.prefixVendors %>.min.js'
       },
       script:{
         src: [
-          'assets/js/default.min.js',
+          'assets/js/default.min.js'
         ],
         dest : 'assets/js/dist/<%= pkg.prefixDist %>.min.js'
       }
@@ -94,9 +109,10 @@ module.exports = function(grunt){
         'production/package.json',
         'production/.ftppass',
         'production/assets/css/build',
+        'production/assets/css/lint',
         'production/assets/css/*.css',
         'production/assets/js/build',
-        'production/assets/js/*.js'],
+        'production/assets/js/*.js']
     },
     command:{
       run_cmd:{
@@ -142,6 +158,11 @@ module.exports = function(grunt){
         "uglify": true
       }
     },
+    csslint:{
+      strict:{
+        src : ['assets/css/lint/*.css']
+      }
+    },
     watch: {
       scripts: {
         files : 'assets/js/build/*.js',
@@ -154,7 +175,9 @@ module.exports = function(grunt){
       styles: {
         files : 'assets/css/build/*.scss',
         tasks: [
-          'sass',
+          'sass:dev',
+          'sass:dist',
+          'csslint',
           'cssmin',
           'postcss',
           'concat'
@@ -185,6 +208,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-ftp-deploy');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-modernizr');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
 
   grunt.registerTask('default', ['watch']);
   grunt.registerTask('prod', ['uglify', 'concat', 'sass', 'concat', 'clean:pre_build', 'copy', 'clean:build', 'command']);
