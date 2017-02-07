@@ -4,6 +4,7 @@
   "description": "Assets files",
   "main": "Gruntfile.js",
   "dependencies": {
+    "angular": "^1.6.0",
     "autoprefixer": "latest",
     "gridlex": "latest",
     "grunt": "latest",
