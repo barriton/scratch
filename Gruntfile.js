@@ -1,3 +1,13 @@
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+}
+
 module.exports = function(grunt){
 
   grunt.initConfig({
@@ -45,7 +55,7 @@ module.exports = function(grunt){
           except : ['jQuery','$']
         },
         compress: {
-          drop_console: true
+        //  drop_console: true
         }
       },
       my_target: {
@@ -116,7 +126,7 @@ module.exports = function(grunt){
     },
     command:{
       run_cmd:{
-        cmd: ['chown -R <%= pkg.user %>:<%= pkg.group %> production']
+        cmd: ['chown -R <%= pkg.user %>:<%= pkg.group %> production', 'touch ./production/.build_'+guid()]
       }
     },
     postcss:{
@@ -168,7 +178,8 @@ module.exports = function(grunt){
         files : 'assets/js/build/*.js',
         tasks : [
           'uglify',
-          'concat',
+          'concat:vendor_js',
+          'concat:script',
           'modernizr:dist'
         ]
       },
@@ -180,19 +191,9 @@ module.exports = function(grunt){
           'csslint',
           'cssmin',
           'postcss',
-          'concat'
+          'concat:vendor_css',
+          'concat:css'
         ]
-      }
-    },
-    'ftp-deploy':{
-      build:{
-        auth:{
-          host: '<%= pkg.ftp.host %>',
-          port: '<%= pkg.ftp.port %>',
-          authKey : 'key'
-        },
-        src : 'production',
-        dest : '/'
       }
     }
   });
@@ -205,14 +206,12 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-commands');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-ftp-deploy');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-csslint');
 
   grunt.registerTask('default', ['watch']);
   grunt.registerTask('prod', ['uglify', 'concat', 'sass', 'concat', 'clean:pre_build', 'copy', 'clean:build', 'command']);
-  grunt.registerTask('deploy', ['ftp-deploy']);
   grunt.registerTask('clean-prod', ['clean:pre_build']);
   grunt.registerTask('begin', ['clean:begin']);
 };
