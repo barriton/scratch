@@ -6,6 +6,7 @@
   "dependencies": {
     "angular": "^1.6.0",
     "autoprefixer": "latest",
+    "barriton-bjs": "latest",
     "gridlex": "latest",
     "grunt": "latest",
     "grunt-contrib-clean": "latest",

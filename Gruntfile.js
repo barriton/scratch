@@ -85,7 +85,7 @@ module.exports = function(grunt){
       },
       vendor_js:{
         src: [
-          'node_modules/jquery/dist/jquery.min.js'
+          'node_modules/barriton-bjs/bjs.js'
         ],
         dest: 'assets/js/dist/<%= pkg.prefixVendors %>.min.js'
       },
