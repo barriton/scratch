@@ -52,7 +52,7 @@ module.exports = function(grunt){
     uglify: {
       options: {
         mangle: {
-          except : ['jQuery','$']
+          reserved : ['jQuery','$']
         },
         compress: {
         //  drop_console: true
