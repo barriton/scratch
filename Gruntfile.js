@@ -108,8 +108,7 @@ module.exports = function(grunt){
             begin : [
                 'README.md',
                 '.gitignore',
-                '.git',
-                'assets/js/build/.gitkeep'
+                '.git'
             ],
             pre_build : ['production'],
             build : ['production/.sass-cache',
