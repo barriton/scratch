@@ -1,6 +1,6 @@
 {
   "name": "Assets",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Assets files",
   "main": "Gruntfile.js",
   "dependencies": {
@@ -25,7 +25,7 @@
     "normalize.css": "latest"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Barriton",

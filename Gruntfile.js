@@ -21,9 +21,9 @@ module.exports = function(grunt){
                 files:[
                     {
                         expand: true,
-                        cwd: 'assets/build/css',
+                        cwd: 'assets/src/css',
                         src: ['default.scss'],
-                        dest : 'assets/build/css',
+                        dest : 'assets/src/css',
                         ext: '.lint.css'
                     }
                 ]
@@ -37,9 +37,9 @@ module.exports = function(grunt){
                 files:[
                     {
                         expand: true,
-                        cwd: 'assets/build/css',
+                        cwd: 'assets/src/css',
                         src: ['*.scss'],
-                        dest : 'assets/build/css',
+                        dest : 'assets/src/css',
                         ext: '.min.css'
                     },
                     {
@@ -61,9 +61,9 @@ module.exports = function(grunt){
             my_target: {
                 files:[{
                     expand: true,
-                    cwd : 'assets/build/js',
+                    cwd : 'assets/src/js',
                     src : ['*.js','!*.min.js'],
-                    dest : 'assets/build/js',
+                    dest : 'assets/src/js',
                     ext : '.min.js'
                 }]
             }
@@ -71,28 +71,29 @@ module.exports = function(grunt){
         concat: {
             vendor_css:{
                 src: [
-                    'assets/build/css/normalize.min.css',
-                    'assets/build/css/barriton.min.css',
-                    'assets/build/css/gridlex.min.css'
+                    'assets/src/css/normalize.min.css',
+                    'assets/src/css/barriton.min.css',
+                    'assets/dist/css/gridlex.min.css'
                 ],
                 dest : 'assets/dist/css/<%= pkg.prefixVendors %>.min.css'
             },
             css:{
                 src: [
-                    'assets/build/css/default.min.css'
+                    'assets/src/css/default.min.css'
                 ],
                 dest : 'assets/dist/css/<%= pkg.prefixDist %>.min.css'
             },
             vendor_js:{
                 src: [
                     'node_modules/angular/angular.min.js',
+                    'node_modules/angular-inview/angular-inview.js',
                     'node_modules/barriton-bjs/bjs.js'
                 ],
                 dest: 'assets/dist/js/<%= pkg.prefixVendors %>.min.js'
             },
             script:{
                 src: [
-                    'assets/build/js/default.min.js'
+                    'assets/src/js/default.min.js'
                 ],
                 dest : 'assets/dist/js/<%= pkg.prefixDist %>.min.js'
             }
@@ -101,7 +102,7 @@ module.exports = function(grunt){
             main: {
                 expand: true,
                 src : '**',
-                dest : 'production/'
+                dest : 'build/'
             }
         },
         clean : {
@@ -110,17 +111,16 @@ module.exports = function(grunt){
                 '.gitignore',
                 '.git'
             ],
-            pre_build : ['production'],
-            build : ['production/.sass-cache',
-                'production/node_modules',
-                'production/Gruntfile.js',
-                'production/package.json',
-                'production/.ftppass',
-                'production/assets/build']
+            pre_build : ['build'],
+            build : ['build/.sass-cache',
+                'build/node_modules',
+                'build/Gruntfile.js',
+                'build/package.json',
+                'build/assets/src']
         },
         command:{
             run_cmd:{
-                cmd: ['chown -R <%= pkg.user %>:<%= pkg.group %> production', 'touch ./production/.build_'+guid()]
+                cmd: ['chown -R <%= pkg.user %>:<%= pkg.group %> build', 'touch ./build/.build_'+guid()]
             }
         },
         postcss:{
@@ -130,13 +130,13 @@ module.exports = function(grunt){
                 ]
             },
             dist: {
-                src: 'assets/build/css/*.lint.css'
+                src: 'assets/src/css/*.lint.css'
             }
         },
         cssmin:{
             target:{
                 files:{
-                    'assets/build/css/normalize.min.css' : ['node_modules/normalize.css/normalize.css']
+                    'assets/src/css/normalize.min.css' : ['node_modules/normalize.css/normalize.css']
                 }
             }
         },
@@ -164,12 +164,12 @@ module.exports = function(grunt){
         },
         csslint:{
             strict:{
-                src : ['assets/build/css/*.lint.css']
+                src : ['assets/src/css/*.lint.css']
             }
         },
         watch: {
             scripts: {
-                files : 'assets/build/js/*.js',
+                files : 'assets/src/js/*.js',
                 tasks : [
                     'uglify',
                     'concat:vendor_js',
@@ -178,7 +178,7 @@ module.exports = function(grunt){
                 ]
             },
             styles: {
-                files : 'assets/build/css/*.scss',
+                files : 'assets/src/css/*.scss',
                 tasks: [
                     'sass:dev',
                     'sass:dist',
